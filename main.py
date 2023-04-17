@@ -47,4 +47,6 @@ class Questions:
     
     # used to select a random question from q's list
     def random_question (self):
-        # to be added
+        # generates a random number and returns question at that index
+        random_number = random.randint(0,len(questions)-1)
+        return question[random_number]
