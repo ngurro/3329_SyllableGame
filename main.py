@@ -2,6 +2,8 @@
 import random
 # for syllable counting
 import nltk
+from nltk.corpus import words
+from syllables import count
 
 # will keep track of scores
 class Player:
@@ -29,8 +31,16 @@ class Game:
         self.game_over = False
         
     def valid_response(self, response):
-        # validation logic to be added here
+        # checks if word is in English
+        if response.lower() not in words.words():
+            return False
+        # checks if response has exceeded the amount of syllables
+        if count(response) > self.num_syllables:
+            return False
         return True
+        
+    def play_round(self):
+     pass
 
 # will allow players to input their own questions or generate one
 # from a pre-populated list of questions 
@@ -48,5 +58,12 @@ class Questions:
     # used to select a random question from q's list
     def random_question (self):
         # generates a random number and returns question at that index
-        random_number = random.randint(0,len(question)-1)
-        return question[random_number]
+        random_number = random.randint(0,len(self.question)-1)
+        return self.question[random_number]
+    
+     # function used to get syllable amount from answer (Note:idk where to put this yet)
+    def get_syllables(self, answer):
+      syllables = 0
+      for word in answer.split():
+        syllables += len(nltk.corpus.cmudict.dict().get(word.lower(), [[0]])[0])
+      return syllables
