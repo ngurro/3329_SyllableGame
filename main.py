@@ -35,7 +35,7 @@ class Game:
         if response.lower() not in words.words():
             return False
         # checks if it is just a one letter word
-        if len(response.split()) == 1;
+        if len(response.split()) == 1:dsf
             return False
         # checks if response has exceeded the amount of syllables
         if self.get_syllables(response) > self.num_syllables
@@ -67,7 +67,7 @@ class Questions:
     
          # function used to get syllable amount from answer (Note:idk where to put this yet)
         def get_syllables(self, answer):
-        syllables = 0
-        for word in answer.split():
-            syllables += len(self.dictionary.get(word.lower(), [[0]])[0])
-        return syllables
+            syllables = 0
+            for word in answer.split():
+                syllables += len(self.dictionary.get(word.lower(), [[0]])[0])
+            return syllables
